@@ -3,7 +3,7 @@ import textwrap
 
 def menu():
     menu = """\n
-    ================ MENU ================
+    ================ MENU BANCÁRIO ================
     [d]\tDepositar
     [s]\tSacar
     [e]\tExtrato
@@ -12,7 +12,7 @@ def menu():
     [nu]\tNovo usuário
     [q]\tSair
     => """
-    return input(textwrap.dedent(menu))
+    return input(textwrap.dedent(menu)).lower()
 
 
 def depositar(saldo, valor, extrato, /):
