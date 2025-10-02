@@ -90,13 +90,43 @@ def nova_conta(agencia, numero_conta, usuarios):
         print("\n ******** Para criar nova conta é necessário que o CPF seja de um usuário! Gentileza conferir. Processo encerrado! ********")
         return None
 
+def listar_contas(contas):
+    for conta in contas:
+        linha = f'''
+        Agência:/t{conta["agencia"]}
+        C/C:/t{conta["numero_conta"]}    
+        Titular:/t{conta["usuario"]["nome"]}
+        CPF:/t{conta["usuario"]["CPF"]}
+'''
+        print("-"*50)
+        print(textwrap.dedent(linha))
 
-#def listar_contas(contas):
+def novo_usuario(usuarios):
+    cpf = input("Digite o CPF do novo usuário (somente números):").strip()
+    usuario = filtro_usuario(cpf, usuarios)
 
-#def novo_usuario(usuarios):
+    if usuario:
+        print("/n +++++ CPF já cadastrado como usuário no sistema! +++++")
 
-#def listar_usuarios(usuarios):
+    else:
 
+        nome = input("Digite o nome completo do usuário:")
+        data_nascimento = input("Digite a data de nascimento do usuário (formato dd-mm-aaaa):")  
+        endereco = input("Digite o endereço do usuário (complemento com número, bairro, cidade/sigla estado)")  
+
+        usuarios.append({"nome":nome, "data_nascimento":data_nascimento, "cpf":cpf, "endereco":endereco})
+        print("\n ------- Usuário cadastrado com sucesso! -------")
+
+def listar_usuarios(usuarios):
+    for usuario in usuarios:
+        linha = f'''
+        Nome:/t{usuario["nome"]}
+        Data de Nascimento:/t{usuario["data_nascimento"]}
+        CPF:/t{usuario["cpf"]}  
+        Endereço:/t{usuario["endereco"]}
+'''
+        print("-"*50)
+        print(textwrap.dedent(linha))
 
 
 #----
