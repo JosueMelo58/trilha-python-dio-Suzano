@@ -71,6 +71,35 @@ def exibir_extrato(saldo, /, *, extrato):
     print(f"\nSaldo:\t\tR$ {saldo:.2f}")
     print("==========================================")
 
+#Novas funcionalidades---
+
+
+def filtro_usuario(cpf, usuarios):
+    usuarios_filtrados = [usuario for usuario in usuarios if usuario["cpf"] == cpf]
+    return usuarios_filtrados[0] if usuarios_filtrados else None
+
+def nova_conta(agencia, numero_conta, usuarios):
+    cpf = input("Informe o CPF do usuário: ").strip()
+    usuario = filtro_usuario(cpf, usuarios)
+
+    if usuario:
+        print("/n ========== Nova conta criada com sucesso! ==========")
+        return {'agencia':agencia, 'numero_conta':numero_conta, 'usuario':usuario}
+    
+    else:
+        print("\n ******** Para criar nova conta é necessário que o CPF seja de um usuário! Gentileza conferir. Processo encerrado! ********")
+        return None
+
+
+#def listar_contas(contas):
+
+#def novo_usuario(usuarios):
+
+#def listar_usuarios(usuarios):
+
+
+
+#----
 def main():
     LIMITE_SAQUES = 3
     AGENCIA = "0001"
