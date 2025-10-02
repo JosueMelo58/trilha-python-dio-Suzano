@@ -3,7 +3,7 @@ import time
 import textwrap
 from datetime import datetime
 
-
+#teste
 def menu():
     menu = """\n
     ================ MENU BANCÁRIO ================
