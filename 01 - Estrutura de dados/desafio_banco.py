@@ -3,13 +3,18 @@ import time
 import textwrap
 from datetime import datetime
 
-#teste
+# Criando Menu
+
 def menu():
     menu = """\n
     ================ MENU BANCÁRIO ================
-    [d]\tDepositar
-    [s]\tSacar
-    [e]\tExtrato
+    [1]\tDepositar
+    [2]\tSacar
+    [3]\tExtrato
+    [4]\tNova conta
+    [5]\tListar contas
+    [6]\tNovo usuário
+    [7]\tListar usuários
     [q]\tSair
     => """
     return input(textwrap.dedent(menu)).lower()
@@ -84,14 +89,14 @@ def main():
     while True:
         opcao = menu()
 
-        if opcao == "d":
+        if opcao == "1":
             valor = float(input("Informe o valor do depósito: "))
 
             saldo, extrato = depositar(saldo, valor, extrato) 
             time.sleep(1.5)  
             os.system("cls")
 
-        elif opcao == "s":
+        elif opcao == "2":
             valor = float(input("Informe o valor do saque: "))
 
             saldo, extrato = sacar(
@@ -105,7 +110,7 @@ def main():
             time.sleep(1.5)
             os.system("cls")
 
-        elif opcao == "e":
+        elif opcao == "3":
             exibir_extrato(saldo, extrato=extrato)
             input("Pressione Enter para retornar ao Menu")
             os.system("cls")
