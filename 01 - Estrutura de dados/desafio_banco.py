@@ -88,15 +88,16 @@ def nova_conta(agencia, numero_conta, usuarios):
     
     else:
         print("\n ******** Para criar nova conta é necessário que o CPF seja de um usuário! Gentileza conferir. Processo encerrado! ********")
+        time.sleep(3)
         return None
 
 def listar_contas(contas):
     for conta in contas:
         linha = f'''
-        Agência:/t{conta["agencia"]}
-        C/C:/t{conta["numero_conta"]}    
-        Titular:/t{conta["usuario"]["nome"]}
-        CPF:/t{conta["usuario"]["CPF"]}
+        Agência:\t{conta["agencia"]}
+        C/C:\t{conta["numero_conta"]}    
+        Titular:\t{conta["usuario"]["nome"]}
+        CPF:\t{conta["usuario"]["cpf"]}
 '''
         print("-"*50)
         print(textwrap.dedent(linha))
@@ -113,17 +114,16 @@ def novo_usuario(usuarios):
         nome = input("Digite o nome completo do usuário:")
         data_nascimento = input("Digite a data de nascimento do usuário (formato dd-mm-aaaa):")  
         endereco = input("Digite o endereço do usuário (complemento com número, bairro, cidade/sigla estado)")  
-
         usuarios.append({"nome":nome, "data_nascimento":data_nascimento, "cpf":cpf, "endereco":endereco})
         print("\n ------- Usuário cadastrado com sucesso! -------")
 
 def listar_usuarios(usuarios):
     for usuario in usuarios:
         linha = f'''
-        Nome:/t{usuario["nome"]}
-        Data de Nascimento:/t{usuario["data_nascimento"]}
-        CPF:/t{usuario["cpf"]}  
-        Endereço:/t{usuario["endereco"]}
+        Nome:\t{usuario["nome"]}
+        Data de Nascimento:\t{usuario["data_nascimento"]}
+        CPF:\t{usuario["cpf"]}  
+        Endereço:\t{usuario["endereco"]}
 '''
         print("-"*50)
         print(textwrap.dedent(linha))
@@ -138,6 +138,8 @@ def main():
     limite = 500
     extrato = ""
     numero_saques = 0
+    usuarios=[]
+    contas = []
     mensagem_inicial = """
     \n ===== Seja bem-vindo(a) ao Banco Python! =====
     \n Limite: {}
@@ -173,6 +175,30 @@ def main():
             exibir_extrato(saldo, extrato=extrato)
             input("Pressione Enter para retornar ao Menu")
             os.system("cls")
+
+        elif opcao == "4":
+            numero_conta = len(contas) + 1
+            conta = nova_conta(AGENCIA, numero_conta, usuarios)
+
+            if conta:
+                contas.append(conta)
+            time.sleep(1)
+            os.system("cls")
+
+        elif opcao == "5":
+            listar_contas(contas)
+            input("Pressione Enter para retornar ao Menu")
+            os.system("cls")
+        elif opcao == "6":
+
+            novo_usuario(usuarios)
+            time.sleep(1)
+            os.system("cls")
+        elif opcao == "7":
+            listar_usuarios(usuarios)
+            input("Pressione Enter para retornar ao Menu")
+            os.system("cls")
+
         elif opcao == "q":
             break
 
